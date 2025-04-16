@@ -54,3 +54,5 @@ sum(Sales) totalsales,
 rank() over(order by sum(sales) desc) rank_customers
 from Sales.Orders
 group by CustomerID
+
+--comentario de prueba
