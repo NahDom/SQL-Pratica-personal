@@ -7,7 +7,7 @@ select
 	,DATENAME(MONTH,CreationTime) Mes_creacion
 	,DATENAME(WEEKDAY,CreationTime) dia_creacion
 	--datetrunc examples
-	,DATETRUNC(DAY,CreationTime) Año_truncado
+	,DATETRUNC(DAY,CreationTime) Anioo_truncado
 	,year(OrderDate) OrderYear
 	,month(OrderDate) OrderMonth
 	,day(OrderDate) OrderDay

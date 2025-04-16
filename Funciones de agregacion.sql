@@ -104,3 +104,43 @@ from(
 where sales > total_general
 
 /*Funciones de MIN y MAX */
+
+-- encontrar el valor mas alto y bajo a lo largo de todos los pedidos
+-- y el mas alto y bajo para cada producto
+
+select
+	OrderID,
+	ProductID,
+	sales,
+	max(sales) over() maximo_ventas,
+	min(Sales) over() minimo_ventas,
+	max(sales) over(partition by productid) max_product,
+	min(sales) over(partition by productid) min_product
+FROM Sales.Orders
+
+-- muestra los empleados que tengan los mayores salarios
+-- otra vez si solo se haria por agregaciones normales siempre darian el maximo de cada uno
+-- con la funcion ventana me daria el grupo completo
+-- de forma tal que con la sub query puedo traerlo y compararlo con el mas alto de la tabla mas_alto
+select 
+*
+from
+(
+	select 
+	*,
+	max(salary) over() mas_alto
+	FROM Sales.Employees
+)t
+where Salary = mas_alto
+
+-- calcular la desviacion de cada venta con el monto maximo y minimo de cada venta
+
+select
+	OrderID,
+	ProductID,
+	sales,
+	max(sales) over() maximo_ventas,
+	min(Sales) over() minimo_ventas,
+	sales - min(Sales) over() desviacion_minima,
+	max(sales) over() - sales desviacion_maxima
+FROM Sales.Orders
