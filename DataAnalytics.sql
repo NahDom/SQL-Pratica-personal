@@ -1,9 +1,9 @@
 --  Anaizar el rendimiento de ventas a lo largo del tiempo
 
 	SELECT 
-	-- extraigo el año
-	YEAR(order_date) AS ordenes_por_año,
-	-- puedo agrupar tanto por año o la fecha del tipo que necesito o por el campo de totalizador
+	-- extraigo el aï¿½o
+	YEAR(order_date) AS ordenes_por_anio,
+	-- puedo agrupar tanto por aï¿½o o la fecha del tipo que necesito o por el campo de totalizador
 	SUM(sales_amount) as ventas_totales,
 	COUNT(DISTINCT customer_key) as total_compradores,
 	SUM(quantity) as total_cantidades

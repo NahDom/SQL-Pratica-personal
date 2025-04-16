@@ -19,9 +19,9 @@ select
 	OrderDate,
 	DATEADD(day,10,OrderDate) [10 dias despues],
 	DATEADD(day,-10,OrderDate) [10 dias antes],
-	DATEADD(year,2,OrderDate) [Dos años despues],
+	DATEADD(year,2,OrderDate) [Dos aï¿½os despues],
 	DATEADD(month,-4,OrderDate) [cuatro meses antes],
-	DATEADD(year,-2,OrderDate) [Dos años antes],
+	DATEADD(year,-2,OrderDate) [Dos aï¿½os antes],
 	DATEADD(month,-2,OrderDate) [dos meses antes]
 	from Sales.Orders;
 
@@ -29,7 +29,7 @@ select
 	/*edad actual de los empleados de la empresa*/
 select
 	EmployeeID,
-	BirthDate [año de nacimiento de los empleados],
+	BirthDate [aï¿½o de nacimiento de los empleados],
 	DATEDIFF(year,BirthDate,GETDATE()) [Edad actual de los empleados]
 from Sales.Employees
  /* tiempo medio de dias entre pedido y compras*/
@@ -111,9 +111,9 @@ from
 select
 	left('Maria',2) izquierda,
 	right('Maria',2) derecha,
-	len('maria') tamaño,
+	len('maria') tamanio,
 	substring('maria',3,5) sub_cadena,
-	Substring(TRIM('Maria es una buena estudiante'),2, len('Maria es una buena estudiante')) [tamaño de la palabra]
+	Substring(TRIM('Maria es una buena estudiante'),2, len('Maria es una buena estudiante')) [tamaï¿½o de la palabra]
 
 /*ABS y ROUND*/
 select
