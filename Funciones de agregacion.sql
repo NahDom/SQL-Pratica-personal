@@ -144,3 +144,28 @@ select
 	sales - min(Sales) over() desviacion_minima,
 	max(sales) over() - sales desviacion_maxima
 FROM Sales.Orders
+
+/* caso analitico */
+-- calcular el PROMEDIO MOVIL de ventas para cada producto a lo largo del tiempo
+-- calculate moving average of sales for each product over time
+
+select 
+	orderid,
+	ProductID,
+	OrderDate,
+	Sales,
+	avg(sales) over (partition by productid) [promedio por producto], -- promedio por ventana de cada producto
+	avg(sales) over (partition by productid order by orderdate) [promedio movil] -- promedio movil a lo largo del tiempo de cada producto
+	-- en este caso el frame usado es el default para la ventana de tiempo ya que abarca a lo largo del mismo
+from sales.Orders
+
+-- calculate the moving average of sales for each product over time, including only the next order
+-- calcular el promedio movil de ventas de cada producto a lo largo del tiempo, incluyendo solo el siguiente pedido
+select 
+	orderid,
+	ProductID,
+	OrderDate,
+	Sales,
+	avg(sales) over(partition by productid order by orderdate 
+	rows between current row and 1 following) [promedio movil incluyendo 1 solo producto]---
+from sales.Orders
