@@ -113,7 +113,7 @@ select
 from Sales.Orders
 where CustomerID NOT IN (select CustomerID from Sales.Customers where Country like '%Germany%')
 
--- SUBCONSULTAS CON ANY|ALL
+-- SUBCONSULTAS CON ANY | ALL
 
 -- encontrar los empleados femeninos los cuales sus salarios sean mas grandes que los de empleados masculinos
 
@@ -125,6 +125,24 @@ where Gender like '%F%' and (Salary > ANY (select Salary from Sales.Employees wh
 select EmployeeID,FirstName,Salary from Sales.Employees
 where Gender like '%F%' and (Salary > ALL (select Salary from Sales.Employees where Gender like '%M%'))
 
+-- SUBCONSULTAS CORRELACIONADAS Y NO CORRELACIONADAS
 
+-- ya estudiado, teoria de ramakrishnan 3ra edicion para mas informacion pero nunca esta demas saberlo
+-- ejemplo sencillo
 
- 
+-- mostrar todos los detalles de clientes y encontrar el total de ordenes para cada cliente
+-- 
+-- en este caso se necesita un escalar POR CADA VALOR de la tabla clientes
+-- y el exists no tendria sentido porqe es usado para verificar existencias o coincidencias
+-- mucho menos tendria sentido en el from porque no hay forma de correlacionarlas
+
+select 
+*, (select count(*) from Sales.Orders o where o.CustomerID = c.CustomerID) total_por_pedido
+from sales.Customers c
+
+ -- SUBCONSULTA CON EXISTS
+
+ -- en este git me pasare haciendo decenas de docs con muchos haciendo esto asi que, si lees esto
+ -- que tengas un lindo dia
+
+ -- 

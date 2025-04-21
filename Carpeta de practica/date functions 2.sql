@@ -1,11 +1,11 @@
-/* Cuantos pedidos se realizaron cada año */
+/* Cuantos pedidos se realizaron cada aï¿½o */
 select
-	 year(OrderDate) año_Pedidos
+	 year(OrderDate) anioo_Pedidos
     ,COUNT(*) Numero_de_pedidos
 from Sales.Orders
 group by year(OrderDate);
 
-/* cuantos pedidos se realizaron cada mes del año */
+/* cuantos pedidos se realizaron cada mes del aï¿½o */
 select
 	 datename(month,OrderDate) mes_Pedidos
     ,COUNT(*) Numero_de_pedidos
