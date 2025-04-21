@@ -1,3 +1,3 @@
 # Practica personal en SQL
 ### En este repositorio dejo constancia de mi estudio centrado en sql desde el uso de consultas basicas, hasta aplicar consultas mas complejas a las diferentes bases de datos provistas en los datasets.
-### A medida que fui avanzando fui dejando constancias de cada progreso en el lenguaje y algunos proyectos realizados sobre algun conjunto de datos extra que no esten en el Dataset.
+### A medida que voy avanzando eh dejado constancias de cada progreso en el lenguaje y algunos proyectos realizados sobre algun conjunto de datos extra que no esten en el Dataset o proyectos mas avanzados en las diferentes carpetas disponibles en el repositorio para que cualquiera que deses pueda verlas y probarlos por si misma, cada una con sus readme correspondientes.
