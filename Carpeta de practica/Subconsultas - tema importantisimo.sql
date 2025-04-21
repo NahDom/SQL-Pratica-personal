@@ -68,7 +68,8 @@ from Sales.Products p join Sales.Orders o on p.ProductID = o.ProductID
 -- primer forma (intento mio)
 
 select
-* 
+c.*,
+t.tot_pedido
 from sales.customers c 
  left join (	
 		select 
@@ -82,7 +83,48 @@ from sales.customers c
 		-- la unica forma seria...bueno, la clasica que en vez de una ventana sea una tabla sencilla
 		-- de resultado que se una a la mas grande por medio del join y correlacionado con la clave
 		
-		
+-- SUBCONSULTAS EN EL WHERE
+
+-- Encontrar los productos que tengan un precio mayor que el promedio de todos los productos
+
+select 
+*
+from Sales.Products
+where price > (select avg(price) from Sales.Products)
+
+-- recuerda que solo debe devolver un escalar mas no una tabla, asi que un calculo sobre valores es valido 
+-- mientras devuelva un solo valor
+
+-- SUBCONSULTAS CON OPERADOR IN EN EL WHERE
+-- el operador IN verifica que el valor coincida con algun valor de una lista
+
+-- show the details of orders made by costumers in Germany
+-- mostrar los detalles de pedidos hechos por clientes en alemania
+
+select
+*
+from Sales.Orders
+where CustomerID IN (select CustomerID from Sales.Customers where Country like '%Germany%')
+
+-- mostrar los detalles de los que NO estan en alemania
+
+select
+*
+from Sales.Orders
+where CustomerID NOT IN (select CustomerID from Sales.Customers where Country like '%Germany%')
+
+-- SUBCONSULTAS CON ANY|ALL
+
+-- encontrar los empleados femeninos los cuales sus salarios sean mas grandes que los de empleados masculinos
+
+select EmployeeID,FirstName,Salary from Sales.Employees
+where Gender like '%F%' and (Salary > ANY (select Salary from Sales.Employees where Gender like '%M%'))
+
+-- encontrar los empleados femeninos los cuales sus salarios sean mas grandes que los de todos los empleados masculinos
+
+select EmployeeID,FirstName,Salary from Sales.Employees
+where Gender like '%F%' and (Salary > ALL (select Salary from Sales.Employees where Gender like '%M%'))
+
+
+
  
-
-
