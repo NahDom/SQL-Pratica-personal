@@ -145,4 +145,18 @@ from sales.Customers c
  -- en este git me pasare haciendo decenas de docs con muchos haciendo esto asi que, si lees esto
  -- que tengas un lindo dia
 
- -- 
+ -- mostrar los detalles de ordenes para clientes en alemania
+
+ -- esta de aqui es una subconsulta correlacionada 
+select * from sales.Orders o
+where exists (select 1 from sales.Customers c where Country like '%Germany%' and c.CustomerID = o.CustomerID)
+
+-- esta de aqui es una subconsulta no correlacionada ya que solo esta devolviendo un listado en el IN
+
+select * from sales.Orders o
+-- notar como en el IN y NOT IN debo especificar la columna tanto en la principal como la subconsulta
+where customerid IN (select CustomerID from sales.Customers c where Country like '%Germany%')
+
+-- ambas devuelven exactamente lo mismo es mas la segunda es hasta mas eficiente ya que puede reutilizarse en 
+-- otra parte del codigo pero se debe tener cuidado como todo al usarla 
+
