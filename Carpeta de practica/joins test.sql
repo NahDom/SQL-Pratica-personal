@@ -34,3 +34,7 @@ on c.id = o.customer_id
 SELECT c.id, c.first_name, o.order_id, o.sales
 FROM customers c LEFT JOIN orders o 
 on c.id = o.customer__id
+
+/* SELF JOIN */
+--existe un caso particular que no muchas veces se da en las consultas de BD pero si que existe y si se da que es el self join
+-- o prodcuto cruzado de la tabla consigo misma para lograr el resultado de la consulta sin hacer muchas subconsultas complejas
