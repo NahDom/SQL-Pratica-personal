@@ -1,10 +1,3 @@
-/*
-    Aclaraciones importantes: todo esto en este repositorio no es mas
-    que una interpretacion mia de los enunciados propuestos por la catedra
-    deberian de ser puestos dentro de un SGBD de la mayor conveniencia que prefiera
-    el alumno para probarlo y corroborar que es correcto todo lo que es propuesto aqui
-*/
-
 /* Varias formas de resolucion*/
 
 /*
@@ -195,3 +188,68 @@ ORDER BY c.sid;
 	8. Encuentre los sids de Proveedores que provean cada parte roja o provean 
 	cada parte verde.
 */
+/*
+ La clave a veces viene de la interpretacion de la consigna, en la susodicha tenemos los proveedores que dan cada parte
+ la cuestion aqui serian, al menos para la situacion planteada
+ Un proveedor p provee todas las partes si no existe ninguna parte par que no esté en el catálogo de p osea de proveedores.
+ entonces siguiendo la logica que veniamos viendo en la catedra tendriamos 2 situaciones de resolucion
+*/
+
+-- Con EXCEPT
+SELECT p.sid 
+FROM proveedores p
+WHERE NOT EXISTS (
+				 SELECT par.pid FROM partes par
+                 EXCEPT
+                 SELECT c.pid FROM catalogo c
+                 WHERE c.sid = p.sid
+                 );
+                 
+-- Pero para estar mas seguros haremos con WHERE NOT EXISTS 
+-- el cual funcionaria de la siguiente manera: 
+
+SELECT p.sid 
+FROM proveedores p
+WHERE NOT EXISTS (
+				  SELECT 1 FROM partes par
+				  WHERE NOT EXISTS (
+									SELECT 1 FROM catalogo c
+									WHERE c.pid = par.pid AND c.sid = p.sid
+				 )
+				 );
+/*
+	¿Cual es la logica detras de la anterior consulta?
+    
+    - La subconsulta interna busca partes que no estén asociadas al proveedor actual.
+	- La subconsulta externa excluye proveedores que tienen alguna parte faltante.
+	- El resultado: solo proveedores que tienen todas las partes.
+
+-- para el escenario con los datos que proveimos no todos los proveedores tienen relación con todas las partes, por ende el resultado sera vacio
+*/
+
+-- ¿Como sabemos si lo siguiente es cierto? 
+-- Bueno las partes relacionadas a proveedores estan en el catalogo, podriamos contar cuantas coincidencias tendra cada
+-- proveedor en la tabla y ordenarlo a la salida
+
+SELECT sid, COUNT(DISTINCT(pid)) cantidad_de_partes_por_proveedor
+FROM catalogo
+GROUP BY sid
+ORDER BY sid,cantidad_de_partes_por_proveedor;
+
+-- PUNTO 6
+SELECT p.sid 
+FROM proveedores p
+WHERE NOT EXISTS (
+				  SELECT 1 FROM partes par
+                  WHERE par.color LIKE '%rojo%' AND NOT EXISTS (
+									SELECT 1 FROM catalogo c
+									WHERE c.pid = par.pid AND c.sid = p.sid
+				 )
+				 );
+                 
+SELECT sid, COUNT(DISTINCT(c.pid)) cantidad_de_partes_por_proveedor
+FROM catalogo c LEFT JOIN partes par ON c.pid = par.pid 
+-- realizo left join para buscar coincidencia de claves de pid para obtener el color de cada pid
+WHERE par.color LIKE '%verde%'
+GROUP BY sid
+ORDER BY sid;

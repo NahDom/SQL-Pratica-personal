@@ -1,5 +1,5 @@
 -- =======================================
--- Comandos DDL SQL poblar las tablas
+-- Comandos DDL SQL para poblar las tablas
 -- Proveedores, Partes y Catalogo
 -- =======================================
 
@@ -303,7 +303,4 @@ INSERT INTO Catalogo (sid, pid, cost) VALUES
 (105, 35, 57.22),
 (105, 39, 21.65),
 (105, 50, 73.39);
-
-
-
 
