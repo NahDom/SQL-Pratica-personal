@@ -1,0 +1,68 @@
+INSERT INTO student (sid, snombre, edad) VALUES
+(53688, 'Juan Pérez', 20),
+(53689, 'Ana López', 22),
+(53690, 'Carlos García', 19),
+(53691, 'Lucía Martínez', 21),
+(53692, 'María Fernández', 20),
+(53693, 'Pedro Ramírez', 18),
+(53694, 'Sofía Gómez', 23),
+(53695, 'Javier Díaz', 22),
+(53696, 'Valentina Herrera', 19),
+(53697, 'Mateo Castro', 20),
+(53698, 'Camila Ríos', 21),
+(53699, 'Diego Suárez', 22),
+(53700, 'Andrea Silva', 23),
+(53701, 'Sebastián Ortega', 20),
+(53702, 'Daniela Paredes', 19),
+(53703, 'Martín León', 21),
+(53704, 'Florencia Torres', 22),
+(53705, 'Tomás Méndez', 18),
+(53706, 'Isabella Navarro', 20),
+(53707, 'Emilia Vega', 19);
+
+INSERT INTO faculty (fid, fnombre, departamento) VALUES
+(1001, 'Dr. Alberto Núñez', 'Matemáticas'),
+(1002, 'Dra. Paula Ruiz', 'Física'),
+(1003, 'Dr. Ernesto Aguilar', 'Historia'),
+(1004, 'Dra. Rosa Mendoza', 'Ingeniería'),
+(1005, 'Dr. Mario Carranza', 'Biología'),
+(1006, 'Dra. Elena Bravo', 'Literatura'),
+(1007, 'Dr. Sergio Ibarra', 'Computación'),
+(1008, 'Dra. Carla Salinas', 'Arte'),
+(1009, 'Dr. Javier Cornejo', 'Psicología'),
+(1010, 'Dra. Teresa Molina', 'Química');
+
+INSERT INTO class (cid, cname, aula, fid) VALUES
+(301, 'Cálculo I', 'Aula 101', 1001),
+(302, 'Física General', 'Aula 102', 1002),
+(303, 'Historia Mundial', 'Aula 103', 1003),
+(304, 'Electrónica Digital', 'Aula 201', 1004),
+(305, 'Biología Celular', 'Aula 202', 1005),
+(306, 'Literatura Moderna', 'Aula 203', 1006),
+(307, 'Algoritmos', 'Aula 204', 1007),
+(308, 'Pintura al Óleo', 'Aula 301', 1008),
+(309, 'Psicología Social', 'Aula 302', 1009),
+(310, 'Química Orgánica', 'Aula 303', 1010);
+
+INSERT INTO inscripto (sid, cid) VALUES
+(53688, 301), (53688, 302),
+(53689, 301), (53689, 303),
+(53690, 304), (53690, 307),
+(53691, 301), (53691, 308),
+(53692, 306), (53692, 309),
+(53693, 301), (53693, 310),
+(53694, 305), (53694, 307),
+(53695, 303), (53695, 308),
+(53696, 304), (53696, 301),
+(53697, 301), (53697, 306),
+(53698, 302), (53698, 309),
+(53699, 304), (53699, 307),
+(53700, 306), (53700, 310),
+(53701, 308), (53701, 301),
+(53702, 305), (53702, 302),
+(53703, 309), (53703, 310),
+(53704, 303), (53704, 304),
+(53705, 301), (53705, 308),
+(53706, 305), (53706, 307),
+(53707, 306), (53707, 310);
+
